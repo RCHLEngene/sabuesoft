@@ -17,8 +17,14 @@ class CreateBodegasTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('dirrecion');
+            $table->string('telefono');
+            $table->string('responsable');
+            $table->string('correo');
             $table->string('ciudad');
-            $table->string('nombre');
+            $table->string('estado');
+            $table->foreignId('id_usuario')
+                ->constrained('users')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

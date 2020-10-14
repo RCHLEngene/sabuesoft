@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\municipios;
+use App\Sedes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SedeController extends Controller
 {
@@ -13,7 +17,14 @@ class SedeController extends Controller
      */
     public function index()
     {
-        return view('sede');
+        $data = DB::table('sedes')
+            ->join('municipios','municipios.id_municipio','=','ciudad')
+            ->select('sedes.*','municipios.municipio')
+            ->get();
+
+        $ciudades = municipios::all();
+        $editciudades = $ciudades;
+        return view('sede', compact('ciudades','data','editciudades'));
     }
 
     /**
@@ -34,7 +45,17 @@ class SedeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new Sedes([
+            'nombre' => $request->get('nombre'),
+            'correo' => $request->get('correo'),
+            'direccion' => $request->get('direccion'),
+            'ciudad' => $request->get('ciudad'),
+            'estado' => 0,
+            'id_usuario' => Auth::user()->id,
+        ]);
+
+        $data->save();
+        return redirect('/sucursales');
     }
 
     /**
@@ -45,7 +66,12 @@ class SedeController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = DB::table('sedes')
+            ->join('municipios','municipios.id_municipio','=','ciudad')
+            ->select('sedes.*','municipios.municipio','municipios.id_municipio')
+            ->where('sedes.id','=',$id)
+            ->get();
+        return $data;
     }
 
     /**
