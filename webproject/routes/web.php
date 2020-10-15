@@ -23,6 +23,7 @@ Route::get('/admin', function () {
 Auth::routes();
 Route::resource('clientes', 'ClienteController');
 Route::resource('sucursales', 'SedeController');
+Route::resource('users', 'UserController');
 Route::resource('bodega', 'BodegaController');
 
 Route::get('/home', 'HomeController@index')->name('home');

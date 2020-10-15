@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\municipios;
+use App\roles;
 use App\Sedes;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
-class SedeController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,14 +19,15 @@ class SedeController extends Controller
      */
     public function index()
     {
-        $data = DB::table('sedes')
-            ->join('municipios','municipios.id_municipio','=','ciudad')
-            ->select('sedes.*','municipios.municipio')
+        $rol = roles::all();
+        $sedes = Sedes::all();
+        $editrol = roles::all();
+        $data = DB::table('users')
+            ->join('roles','roles.id','=','users.rol')
+            ->select('users.*','roles.nombre')
             ->get();
 
-        $ciudades = municipios::all();
-        $editciudades = $ciudades;
-        return view('sede', compact('ciudades','data','editciudades'));
+        return view('user', compact('rol','data','editrol','sedes'));
     }
 
     /**
@@ -45,17 +48,16 @@ class SedeController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new Sedes([
-            'nombre' => $request->get('nombre'),
-            'correo' => $request->get('correo'),
-            'direccion' => $request->get('direccion'),
-            'ciudad' => $request->get('ciudad'),
-            'estado' => 0,
-            'id_usuario' => Auth::user()->id,
+        $data = new User([
+            'name' => $request->get('nombre'),
+            'email' => $request->get('correo'),
+            'password' => Hash::make($request->get('password')),
+            'rol' => $request->get('rol'),
+            'sede' => $request->get('sede'),
         ]);
 
         $data->save();
-        return redirect('/sucursales');
+        return redirect('/users');
     }
 
     /**
@@ -66,10 +68,10 @@ class SedeController extends Controller
      */
     public function show($id)
     {
-        $data = DB::table('sedes')
-            ->join('municipios','municipios.id_municipio','=','ciudad')
-            ->select('sedes.*','municipios.municipio','municipios.id_municipio')
-            ->where('sedes.id','=',$id)
+        $data = DB::table('users')
+            ->join('roles','roles.id','=','users.rol')
+            ->select('users.*','roles.nombre','roles.id as idr')
+            ->where('users.id','=',$id)
             ->get();
         return $data;
     }
@@ -94,13 +96,7 @@ class SedeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = Sedes::find($id);
-        $data->nombre = $request->get('editnombre');
-        $data->correo = $request->get('editcorreo');
-        $data->direccion = $request->get('editdireccion');
-        $data->ciudad = $request->get('editciudad');
-        $data->save();
-        return redirect('/sucursales');
+        //
     }
 
     /**
@@ -111,9 +107,6 @@ class SedeController extends Controller
      */
     public function destroy($id)
     {
-        $data = Sedes::find($id);
-        $data->delete();
-
-        return redirect('/sucursales');
+        //
     }
 }
