@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Clientes;
 use App\Factura;
+use App\Mediospago;
 use Illuminate\Http\Request;
 
 class FacturaController extends Controller
@@ -14,7 +16,8 @@ class FacturaController extends Controller
      */
     public function index()
     {
-        //
+        $facturas = Factura::all();
+        return view('factura.index', compact('facturas'));
     }
 
     /**
@@ -24,7 +27,10 @@ class FacturaController extends Controller
      */
     public function create()
     {
-        //
+        // cargar todos los medios de pago
+        $mediospago = Mediospago::all();
+        $clientes = Clientes::all();
+        return view('factura.create', compact('mediospago', 'clientes'));
     }
 
     /**
