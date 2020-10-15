@@ -86,6 +86,30 @@
 
 
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h5>Agrear productos <button class="btn btn-primary float-right">
+                                <i class="fa fa-plus"></i>
+                                Agregar</button></h4>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>Nombre</th>
+                                        <th>Precio</th>
+                                        <th>Precio Venta</th>
+                                        <th>Iva</th>
+                                        <th>Descuento</th>
+                                        <th>Cantidad</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                         <div class="row">
 
                             <div class="col-md-2"></div>
