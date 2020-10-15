@@ -188,7 +188,7 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item active">
-                        <a href="./index.html" class="nav-link active">
+                        <a href="{{url('home')}}" class="nav-link active">
                             <i class=" nav-icon"></i>
                             <p>Inicio</p>
                         </a>
@@ -210,7 +210,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{url('clientes')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <i class="fa fa-address-book nav-icon"></i>
                                     <p>Clientes</p>
                                 </a>
                             </li>
@@ -227,19 +227,19 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{url('productos')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <i class="fa fa-archive nav-icon"></i>
                                     <p>Productos</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{url('bodega')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <i class="fa fa-building nav-icon"></i>
                                     <p>Bodega</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{url('sucursales')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <i class="fa fa-cubes nav-icon"></i>
                                     <p>Sucursales </p>
                                 </a>
                             </li>
@@ -356,10 +356,10 @@
 
     <!-- Main Footer -->
     <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+        <strong>Copyright &copy; 2014-2020 <a href="">Sabuesoft</a>.</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 3.0.5
+            <b>Version</b> beta
         </div>
     </footer>
 </div>
