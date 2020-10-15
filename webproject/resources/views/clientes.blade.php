@@ -18,7 +18,7 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-header" style="position: relative">
-                        <h1 style="font-size: 20px" class="card-title">Usuarios</h1>
+                        <h1 style="font-size: 20px" class="card-title">Clientes</h1>
 
                         <button class="btn btn-primary" style="position: absolute;bottom: 3px; right:10%;" data-toggle="modal" data-target="#modal-lg"> <i class="fa fa-plus-square mr-2"></i>Nuevo</button>
                         <button class="btn btn-primary" style="position: absolute;bottom: 3px; right:4%;" data-toggle="modal" data-target="#modal-lg"><i class="fa fa-minus-square mr-2"></i>Cerrar</button>
@@ -28,9 +28,11 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Nombre del usuario</th>
+                                <th>Documento</th>
+                                <th>Nombre Completo</th>
                                 <th>Correo</th>
-                                <th>rol</th>
+                                <th>Dirección</th>
+                                <th>telefono</th>
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                             </tr>
@@ -39,14 +41,16 @@
                             @foreach($data as $data)
                             <tr>
 
-                                    <td>{{$data->name}}</td>
-                                    <td>{{$data->email}}</td>
-                                    <td><small class="badge badge-success">{{$data->nombre}}</small></td>
+                                    <td>{{$data->documento}}</td>
+                                    <td>{{$data->nombre}}</td>
+                                    <td>{{$data->correo}}</td>
+                                    <td>{{$data->direccion}}</td>
+                                    <td>{{$data->telefono}}</td>
                                     <td>
                                         <button onclick="editar({{$data->id}})" class="btn btn-info btn-sm">Editar</button>
                                     </td>
                                     <td>
-                                        <form action="{{action('UserController@destroy', $data->id)}}" method="post">
+                                        <form action="{{action('ClienteController@destroy', $data->id)}}" method="post">
                                             {{csrf_field()}}
                                             <input name="_method" type="hidden" value="DELETE">
                                             <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
@@ -60,12 +64,12 @@
                     <!-- /.card-body -->
             </div>
                 <div class="modal fade" id="modal-lg">
-                    <form method="post" action="{{url('users')}}">
+                    <form method="post" action="{{url('clientes')}}">
                         {{csrf_field()}}
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Crear usuario</h4>
+                                <h4 class="modal-title">Crear Cliente</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -74,33 +78,29 @@
 
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Nombre del usuario</label>
+                                            <label for="exampleInputEmail1">Numero de identidad</label>
+                                            <input type="text" class="form-control" name="documento" placeholder="" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Nombre completo</label>
                                             <input type="text" class="form-control" name="nombre" placeholder="" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Apellido</label>
+                                            <input type="text" class="form-control" name="apellido" placeholder="" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Correo</label>
                                             <input type="email" class="form-control" name="correo" placeholder="" required>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Contraseña</label>
-                                            <input type="password" class="form-control" name="password" placeholder="" required>
-                                        </div>
 
                                         <div class="form-group">
-                                            <label>Rol</label>
-                                            <select id="rol" class="form-control select2" name="rol" style="width: 100%;" required>
-                                                @foreach($rol as $rol)
-                                                    <option value="{{$rol->id}}">{{$rol->nombre}}</option>
-                                                @endforeach
-                                            </select>
+                                            <label for="exampleInputEmail1">Direccion</label>
+                                            <input type="text" class="form-control"   name="direccion" placeholder="" required>
                                         </div>
-                                        <div class="form-group" style="display: none" id="sede">
-                                            <label>Sucursal</label>
-                                            <select class="form-control select2" name="sede"  style="width: 100%;" required>
-                                                @foreach($sedes as $sedes)
-                                                    <option value="{{$sedes->id}}">{{$sedes->nombre}}</option>
-                                                @endforeach
-                                            </select>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">telefono</label>
+                                            <input type="text" class="form-control"   name="telefono" placeholder="" required>
                                         </div>
                             </div>
                             <div class="modal-footer justify-content-between">
@@ -121,7 +121,7 @@
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Actualizar usuario</h4>
+                                    <h4 class="modal-title">Actualizar Cliente</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -130,20 +130,31 @@
 
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Nombre del Usuario</label>
-                                            <input type="text" class="form-control"  id="nombre" name="editnombre" placeholder="" required>
+                                            <label for="exampleInputEmail1">Documento</label>
+                                            <input type="text" class="form-control"  id="editdocumento" name="editdocumento" placeholder="" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Nombres</label>
+                                            <input type="text" class="form-control"  id="editnombre" name="editnombre" placeholder="" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Apellidos</label>
+                                            <input type="text" class="form-control"  id="editapellidos" name="editapellidos" placeholder="" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Correo</label>
-                                            <input type="email" class="form-control" id="correo" name="editcorreo" placeholder="" required>
+                                            <input type="email" class="form-control" id="editcorreo" name="editcorreo" placeholder="" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Direccion</label>
+                                            <input type="text" class="form-control"  id="editdireccion" name="editdireccion" placeholder="" required>
+                                            <input type="hidden" id="idm">
                                         </div>
                                         <div class="form-group">
-                                            <label>Rol</label>
-                                            <select class="form-control select2" name="roledith" id="roledith" style="width: 100%;" required>
-                                                @foreach($editrol as $editrol)
-                                                    <option value="{{$editrol->id}}">{{$editrol->nombre}}</option>
-                                                @endforeach
-                                            </select>
+                                            <label for="exampleInputEmail1">Telefono</label>
+                                            <input type="text" class="form-control"  id="edittelefono" name="edittelefono" placeholder="" required>
+                                            <input type="hidden" id="idm">
                                         </div>
                                     </div>
                                     <div class="modal-footer justify-content-between">
@@ -164,36 +175,41 @@
 @endsection
 @section('js')
     <script>
-        $('#rol').change(function() {
-            var state = $('#rol').val();
-            if (state != 1){
-                $('#sede').removeAttr('style')
-                console.log(state);
-
-            }else{
-                $('#sede').css({display: 'none'});
-                console.log(state);
-            }
-        });
-
         function editar(id){
             let numero = 0;
-            $.get("{{url('users')}}/"+id, function(data, status){
-              var idr = data[0].idr;
-                numero = idr;
-                console.log(idr);
-                 $('#nombre').val(data[0].name);
-               $('#correo').val(data[0].email);
-                 $('#editciudad').remove();
-                 $('#roledith').val(idr);
-                 $('#roledith').change();
-                 //var selec = '<option id="editciudad" selected="selected" value="">'++'</option>';
-                 console.log(idr)
-                 $("#form1").attr("action",'users/'+data[0].id);
-                 //$('#ciudad').append(selec);*/
+            $.get("{{url('clientes')}}/"+id, function(data, status){
+               console.log(data);
+                $('#editdocumento').val(data[0].documento);
+                $('#editnombre').val(data[0].nombre);
+                $('#editapellidos').val(data[0].apellido);
+                $('#editcorreo').val(data[0].correo);
+                $('#editdireccion').val(data[0].direccion);
+                $('#edittelefono').val(data[0].telefono);
+                //var selec = '<option id="editciudad" selected="selected" value="">'++'</option>';
+                $("#form1").attr("action",'clientes/'+data[0].id);
+                //$('#ciudad').append(selec);
             });
 
             $('#editar').modal("show");
+        }
+
+        function eliminar(id){
+            var token = {{csrf_token()}};
+            $.ajax(
+                {
+                    url: "{{url('sucursales')}}/"+id,
+                    type: 'PUT',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        "_method": 'DELETE',
+                        "_token": '@csrf',
+                    },
+                    success: function ()
+                    {
+                        console.log("Eliminado");
+                    }
+                });
         }
     </script>
 @endsection

@@ -84,7 +84,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -96,7 +96,12 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = User::find($id);
+        $data->name = $request->get('editnombre');
+        $data->email = $request->get('editcorreo');
+        $data->rol = $request->get('roledith');
+        $data->save();
+        return redirect('/users');
     }
 
     /**
@@ -107,6 +112,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = User::find($id);
+        $data->delete();
+
+        return redirect('/users');
     }
 }

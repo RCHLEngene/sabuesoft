@@ -20,14 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62f21bfe-a4ed-4b95-9f9a-8470eda15485" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/webproject/resources/views/user.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webproject/resources/views/bodega.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webproject/resources/views/clientes.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webproject/app/Http/Controllers/SedeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/webproject/app/Http/Controllers/SedeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webproject/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/webproject/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webproject/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/webproject/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webproject/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/webproject/resources/views/layouts/admin.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webproject/app/Clientes.php" beforeDir="false" afterPath="$PROJECT_DIR$/webproject/app/Clientes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webproject/app/Http/Controllers/BodegaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/webproject/app/Http/Controllers/BodegaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webproject/app/Http/Controllers/ClienteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/webproject/app/Http/Controllers/ClienteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webproject/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/webproject/app/Http/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webproject/resources/views/sede.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/webproject/resources/views/sede.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webproject/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/webproject/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webproject/resources/views/user.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/webproject/resources/views/user.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +176,7 @@
       <option name="presentableId" value="Default" />
       <updated>1602700907322</updated>
       <workItem from="1602700914649" duration="10046000" />
-      <workItem from="1602766034807" duration="5465000" />
+      <workItem from="1602766034807" duration="8095000" />
     </task>
     <servers />
   </component>
@@ -195,10 +196,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602768686249">
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602773792212">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602768686249" />
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602773792212" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1602709067580">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

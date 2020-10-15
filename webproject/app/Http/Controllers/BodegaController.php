@@ -13,7 +13,7 @@ class BodegaController extends Controller
      */
     public function index()
     {
-        //
+        return view('bodega');
     }
 
     /**

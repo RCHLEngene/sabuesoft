@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Clientes;
+use http\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClienteController extends Controller
 {
@@ -13,7 +16,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        return view('cliente');
+        $data = Clientes::all();
+        return view('clientes', compact('data'));
     }
 
     /**
@@ -34,7 +38,19 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new Clientes([
+            'documento' => $request->get('documento'),
+            'nombre' => $request->get('nombre'),
+            'apellido' => $request->get('apellido'),
+            'correo' => $request->get('correo'),
+            'direccion' => $request->get('direccion'),
+            'telefono' => $request->get('telefono'),
+            'estado' => 0,
+            'id_usuario' => Auth::user()->id,
+        ]);
+
+        $data->save();
+        return redirect('/clientes');
     }
 
     /**
@@ -45,7 +61,8 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Clientes::all();
+        return $data;
     }
 
     /**
@@ -68,7 +85,15 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Clientes::find($id);
+        $data->documento = $request->get('editdocumento');
+        $data->nombre = $request->get('editnombre');
+        $data->apellido = $request->get('editapellidos');
+        $data->correo = $request->get('editcorreo');
+        $data->direccion = $request->get('editdireccion');
+        $data->telefono = $request->get('edittelefono');
+        $data->save();
+        return redirect('/clientes');
     }
 
     /**
@@ -79,6 +104,8 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Clientes::find($id);
+        $data->delete();
+        return redirect('/clientes');
     }
 }
