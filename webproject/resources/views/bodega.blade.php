@@ -28,9 +28,11 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Nombre de la Sucursal</th>
-                                <th>Correo</th>
+                                <th>Nombre de la Bodega</th>
                                 <th>Dirección</th>
+                                <th>Telefono</th>
+                                <th>Responsable</th>
+                                <th>Correo</th>
                                 <th>Ciudad</th>
                                 <th>Estado</th>
                                 <th>Editar</th>
@@ -38,33 +40,35 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {{--@foreach($data as $data)
+                            @foreach($data as $data)
                             <tr>
 
                                     <td>{{$data->nombre}}</td>
-                                    <td>{{$data->correo}}</td>
                                     <td>{{$data->direccion}}</td>
+                                    <td>{{$data->telefono}}</td>
+                                    <td>{{$data->name}}</td>
+                                    <td>{{$data->correo}}</td>
                                     <td>{{$data->municipio}}</td>
-                                    <td>@if($data->estado == 0)<small class="badge badge-success">Activo</small>@else($data->estado == 1)<small class="badge badge-danger">Inactivo</small>@endif</td>
+                                    <td>@if($data->bestado == '0')<small class="badge badge-success">Activo</small>@else($data->estado == 1)<small class="badge badge-danger">Inactivo</small>@endif</td>
                                     <td>
-                                        <button onclick="editar({{$data->id}})" class="btn btn-info btn-sm">Editar</button>
+                                        <button onclick="editar({{$data->bid}})" class="btn btn-info btn-sm">Editar</button>
                                     </td>
                                     <td>
-                                        <form action="{{action('SedeController@destroy', $data->id)}}" method="post">
+                                        <form action="{{action('BodegaController@destroy', $data->bid)}}" method="post">
                                             {{csrf_field()}}
                                             <input name="_method" type="hidden" value="DELETE">
                                             <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                                         </form>
                                     </td>
                             </tr>
-                            @endforeach--}}
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
                     <!-- /.card-body -->
             </div>
                 <div class="modal fade" id="modal-lg">
-                    <form method="post" action="{{url('sucursales')}}">
+                    <form method="post" action="{{url('bodega')}}">
                         {{csrf_field()}}
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -78,8 +82,24 @@
 
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Nombre de la Sucursal</label>
+                                            <label for="exampleInputEmail1">Nombre de bodega</label>
                                             <input type="text" class="form-control" name="nombre" placeholder="" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Direccion</label>
+                                            <input type="text" class="form-control"   name="direccion" placeholder="" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Telefono</label>
+                                            <input type="text" class="form-control"   name="telefono" placeholder="" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Responsable</label>
+                                            <select class="form-control select2" name="responsable" style="width: 100%;" required>
+                                                @foreach($user as $user)
+                                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Correo</label>
@@ -87,15 +107,11 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Direccion</label>
-                                            <input type="text" class="form-control"   name="direccion" placeholder="" required>
-                                        </div>
-                                        <div class="form-group">
                                             <label>Ciudad</label>
                                             <select class="form-control select2" name="ciudad" style="width: 100%;" required>
-                                                {{--@foreach($ciudades as $ciudades)
+                                                @foreach($ciudades as $ciudades)
                                                     <option value="{{$ciudades->id_municipio}}">{{$ciudades->municipio}}</option>
-                                                @endforeach--}}
+                                                @endforeach
                                             </select>
                                         </div>
                             </div>
@@ -117,7 +133,7 @@
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Actualizar Sucursal</h4>
+                                    <h4 class="modal-title">Actualizar Bodega</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -126,25 +142,38 @@
 
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Nombre de la Sucursal</label>
-                                            <input type="text" class="form-control"  id="nombre" name="editnombre" placeholder="" required>
+                                            <label for="exampleInputEmail1">Nombre de la Bodega</label>
+                                            <input type="text" class="form-control"  id="editnombre" name="editnombre" placeholder="" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputPassword1">Correo</label>
-                                            <input type="email" class="form-control" id="correo" name="editcorreo" placeholder="" required>
+                                            <label for="exampleInputPassword1">Direccion</label>
+                                            <input type="text" class="form-control" id="editdireccion" name="editdireccion" placeholder="" required>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Direccion</label>
-                                            <input type="text" class="form-control"  id="direccion" name="editdireccion" placeholder="" required>
+                                            <label for="exampleInputEmail1">Telefono</label>
+                                            <input type="text" class="form-control"  id="edittelefono" name="edittelefono" placeholder="" required>
+                                            <input type="hidden" id="idm">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Responsable</label>
+                                            <select class="form-control select2" name="editresponsable" id="editresponsable" style="width: 100%;" required>
+                                                @foreach($edituser as $edituser)
+                                                    <option value="{{$edituser->id}}">{{$edituser->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Correo</label>
+                                            <input type="text" class="form-control"  id="editcorreo" name="editcorreo" placeholder="" required>
                                             <input type="hidden" id="idm">
                                         </div>
                                         <div class="form-group">
                                             <label>Ciudad</label>
                                             <select class="form-control select2" name="editciudad" id="ciudad" style="width: 100%;" required>
-                                                {{--@foreach($editciudades as $editciudades)
+                                                @foreach($editciudades as $editciudades)
                                                     <option value="{{$editciudades->id_municipio}}">{{$editciudades->municipio}}</option>
-                                                @endforeach--}}
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -168,20 +197,25 @@
     <script>
         function editar(id){
             let numero = 0;
-            $.get("{{url('sucursales')}}/"+id, function(data, status){
+            let numero2 = 0;
+            $.get("{{url('bodega')}}/"+id, function(data, status){
                console.log(data);
-                var idm = data[0].id_municipio;
-                numero = idm;
-                $('#nombre').val(data[0].nombre);
-                $('#correo').val(data[0].correo);
-                $('#direccion').val(data[0].direccion);
-                $('#idm').val(idm);
+                var bid = data[0].id_municipio;
+                var rid = data[0].responsable;
+                numero = bid;
+                numero2 = rid;
+                $('#editnombre').val(data[0].nombre);
+                $('#editdireccion').val(data[0].direccion);
+                $('#edittelefono').val(data[0].telefono);
+                $('#editcorreo').val(data[0].correo);
                 $('#editciudad').remove();
-                $('#ciudad').val(idm);
+                $('#editresponsable').val(rid);
+                $('#editresponsable').change();
+                $('#ciudad').val(bid);
                 $('#ciudad').change();
                 //var selec = '<option id="editciudad" selected="selected" value="">'++'</option>';
-                console.log(idm)
-                $("#form1").attr("action",'sucursales/'+data[0].id);
+                console.log(bid)
+                $("#form1").attr("action",'bodega/'+id);
                 //$('#ciudad').append(selec);
             });
 
@@ -198,7 +232,7 @@
                     data: {
                         "id": id,
                         "_method": 'DELETE',
-                        "_token": @csrf,
+                        "_token": '@csrf',
                     },
                     success: function ()
                     {

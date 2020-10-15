@@ -198,7 +198,7 @@
                     data: {
                         "id": id,
                         "_method": 'DELETE',
-                        "_token": @csrf,
+                        "_token": '@csrf',
                     },
                     success: function ()
                     {

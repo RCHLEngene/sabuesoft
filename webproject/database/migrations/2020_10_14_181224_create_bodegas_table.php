@@ -16,7 +16,7 @@ class CreateBodegasTable extends Migration
         Schema::create('bodegas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('dirrecion');
+            $table->string('direccion');
             $table->string('telefono');
             $table->string('responsable');
             $table->string('correo');

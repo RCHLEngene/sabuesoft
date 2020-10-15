@@ -20,15 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62f21bfe-a4ed-4b95-9f9a-8470eda15485" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/webproject/resources/views/bodega.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webproject/resources/views/clientes.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webproject/app/Clientes.php" beforeDir="false" afterPath="$PROJECT_DIR$/webproject/app/Clientes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webproject/app/Bodega.php" beforeDir="false" afterPath="$PROJECT_DIR$/webproject/app/Bodega.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webproject/app/Http/Controllers/BodegaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/webproject/app/Http/Controllers/BodegaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webproject/app/Http/Controllers/ClienteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/webproject/app/Http/Controllers/ClienteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webproject/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/webproject/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webproject/database/migrations/2020_10_14_181224_create_bodegas_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/webproject/database/migrations/2020_10_14_181224_create_bodegas_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webproject/resources/views/bodega.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/webproject/resources/views/bodega.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webproject/resources/views/sede.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/webproject/resources/views/sede.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webproject/resources/views/user.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/webproject/resources/views/user.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +173,7 @@
       <option name="presentableId" value="Default" />
       <updated>1602700907322</updated>
       <workItem from="1602700914649" duration="10046000" />
-      <workItem from="1602766034807" duration="8095000" />
+      <workItem from="1602766034807" duration="12000000" />
     </task>
     <servers />
   </component>
@@ -196,10 +193,14 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602773792212">
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602778315294">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602773792212" />
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602778315294" />
+    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602776854549">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1602776854549" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1602709067580">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
