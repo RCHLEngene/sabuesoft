@@ -25,5 +25,6 @@ Route::resource('clientes', 'ClienteController');
 Route::resource('sucursales', 'SedeController');
 Route::resource('users', 'UserController');
 Route::resource('bodega', 'BodegaController');
+Route::resource('productos', 'ProductoController');
 
 Route::get('/home', 'HomeController@index')->name('home');
