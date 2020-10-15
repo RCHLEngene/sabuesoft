@@ -74,7 +74,7 @@
                             <div class="col-md-8">
                             <label for="basic-url">Nombre</label>
                             <div class="input-group">
-                                  <input class="form-control py-2" type="search" value="search" id="example-search-input">
+                                  <input class="form-control py-2" type="search" value="Nombre" id="nombreCliente" name="nombreCliente">
                                   <span class="input-group-append">
                                     <button class="btn btn-outline-secondary" id="buscarCliente" type="button">
                                         <i class="fa fa-search"></i>
@@ -140,7 +140,7 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Nueva Factura</h4>
+                                <h4 class="modal-title">Clientess</h4>
                                 <button type="button" class="close" factura-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -148,31 +148,7 @@
                             <div class="modal-body">
 
                                     <div class="card-body">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Numero de identidad</label>
-                                            <input type="text" class="form-control" name="documento" placeholder="" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Nombre completo</label>
-                                            <input type="text" class="form-control" name="nombre" placeholder="" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Apellido</label>
-                                            <input type="text" class="form-control" name="apellido" placeholder="" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Correo</label>
-                                            <input type="email" class="form-control" name="correo" placeholder="" required>
-                                        </div>
 
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Direccion</label>
-                                            <input type="text" class="form-control"   name="direccion" placeholder="" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">telefono</label>
-                                            <input type="text" class="form-control"   name="telefono" placeholder="" required>
-                                        </div>
                             </div>
                             <div class="modal-footer justify-content-between">
                                 <button type="button" class="btn btn-default" factura-dismiss="modal">Cancelar</button>
@@ -192,44 +168,45 @@
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Actualizar Cliente</h4>
-                                    <button type="button" class="close" factura-dismiss="modal" aria-label="Close">
+                                    <h4 class="modal-title">Clientes</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
 
                                     <div class="card-body">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Documento</label>
-                                            <input type="text" class="form-control"  id="editdocumento" name="editdocumento" placeholder="" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Nombres</label>
-                                            <input type="text" class="form-control"  id="editnombre" name="editnombre" placeholder="" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Apellidos</label>
-                                            <input type="text" class="form-control"  id="editapellidos" name="editapellidos" placeholder="" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Correo</label>
-                                            <input type="email" class="form-control" id="editcorreo" name="editcorreo" placeholder="" required>
-                                        </div>
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>Documento</th>
+                                                <th>Nombre Completo</th>
+                                                <th>Correo</th>
+                                                <th>Dirección</th>
+                                                <th>telefono</th>
+                                                <th>Seleccionar</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($clientes as $data)
+                                            <tr>
 
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Direccion</label>
-                                            <input type="text" class="form-control"  id="editdireccion" name="editdireccion" placeholder="" required>
-                                            <input type="hidden" id="idm">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Telefono</label>
-                                            <input type="text" class="form-control"  id="edittelefono" name="edittelefono" placeholder="" required>
-                                            <input type="hidden" id="idm">
-                                        </div>
+                                                    <td>{{$data->documento}}</td>
+                                                    <td>{{$data->nombre}}</td>
+                                                    <td>{{$data->correo}}</td>
+                                                    <td>{{$data->direccion}}</td>
+                                                    <td>{{$data->telefono}}</td>
+                                                    <td>
+                                                        <button class="btn btn-info btn-sm select_btn" data-dismiss="modal">Seleccionar</button>
+                                                    </td>
+                                            </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <div class="modal-footer justify-content-between">
-                                        <button type="button" class="btn btn-default" factura-dismiss="modal">Cancelar</button>
+
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                                         <button type="submit" class="btn btn-primary">Guardar</button>
                                     </div>
                                 </div>
@@ -284,6 +261,15 @@
         $("#buscarCliente").click(function() {
             $('#clientes').modal("show");
         });
+
+        $("#example1").on('click', 'tbody .select_btn', function (e) {
+            e.preventDefault();
+            var table = $('#example1').DataTable();
+            var data_row = table.row($(this).closest('tr')).data();
+
+            $("#documento").val(data_row[0]);
+            $("#nombreCliente").val(data_row[1]);
+        })
 
 
 
